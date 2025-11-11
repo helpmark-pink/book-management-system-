@@ -19,9 +19,15 @@ return Application::configure(basePath: dirname(__DIR__))
         $exceptions->report(function (Throwable $e) {
             if (app()->environment('production')) {
                 // ここで外部ログサービス（Sentry、Bugsnag等）にレポート可能
+                try {
+                    $userId = auth()->check() ? auth()->id() : null;
+                } catch (\Exception $authException) {
+                    $userId = null;
+                }
+
                 \Illuminate\Support\Facades\Log::error($e->getMessage(), [
                     'exception' => $e,
-                    'user_id' => auth()->check() ? auth()->id() : null,
+                    'user_id' => $userId,
                     'url' => request()->fullUrl(),
                     'ip' => request()->ip(),
                 ]);
