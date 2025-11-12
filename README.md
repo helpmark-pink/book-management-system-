@@ -1,6 +1,7 @@
 # 📚 読書記録システム (Book Management System)
 
 Laravel 12とVue.js 3で構築された、書籍管理・読書記録システムです。Google Books APIと連携し、書籍の検索・登録、読書進捗の管理、レビューの投稿などが可能です。
+URL　https://web-production-c8a14.up.railway.app/
 
 ## ✨ 主な機能
 
